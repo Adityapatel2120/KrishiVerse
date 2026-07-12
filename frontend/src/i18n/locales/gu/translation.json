@@ -1,0 +1,95 @@
+{
+  "common": {
+    "loading": "લોડ થઈ રહ્યું છે...",
+    "save": "સાચવો",
+    "cancel": "રદ કરો",
+    "submit": "સબમિટ કરો",
+    "logout": "લૉગઆઉટ"
+  },
+  "auth": {
+    "selectLanguage": "તમારી ભાષા પસંદ કરો",
+    "welcomeTitle": "કૃષિવર્સમાં આપનું સ્વાગત છે",
+    "welcomeSubtitle": "સ્માર્ટ ખેતી, સરળ રીતે",
+    "loginTitle": "લૉગિન",
+    "signupTitle": "ખાતું બનાવો",
+    "email": "ઈમેલ",
+    "password": "પાસવર્ડ",
+    "fullName": "પૂરું નામ",
+    "confirmPassword": "પાસવર્ડની પુષ્ટિ કરો",
+    "loginButton": "લૉગિન કરો",
+    "signupButton": "સાઇન અપ કરો",
+    "noAccount": "ખાતું નથી?",
+    "haveAccount": "પહેલેથી ખાતું છે?",
+    "continue": "ચાલુ રાખો",
+    "continueWithGoogle": "Google સાથે ચાલુ રાખો"
+  },
+  "sidebar": {
+    "dashboard": "ડેશબોર્ડ",
+    "crop": "પાક",
+    "expense": "ખર્ચ",
+    "farm": "ખેતર",
+    "prediction": "આગાહી",
+    "profile": "પ્રોફાઇલ"
+  },
+  "dashboard": {
+    "title": "ડેશબોર્ડ",
+    "subtitle": "તમારા ખેતરો, પાકો અને ખર્ચનું વિહંગાવલોકન",
+    "totalFarms": "કુલ ખેતરો",
+    "activeCrops": "સક્રિય પાકો",
+    "totalExpense": "કુલ ખર્ચ",
+    "diseaseAlerts": "રોગ ચેતવણી",
+    "expenseTrend": "ખર્ચ વિ આવક વલણ",
+    "recentActivity": "તાજેતરની પ્રવૃત્તિ",
+    "location": "સ્થાન"
+  },
+  "navbar": {
+    "search": "શોધો..."
+  },
+  "farm": {
+    "title": "ખેતરો",
+    "subtitle": "તમારા નોંધાયેલા ખેતરોનું સંચાલન કરો",
+    "addFarm": "ખેતર ઉમેરો",
+    "farmName": "ખેતરનું નામ",
+    "farmNamePlaceholder": "દા.ત. ગ્રીન વેલી ફાર્મ",
+    "location": "સ્થાન",
+    "locationPlaceholder": "દા.ત. વડોદરા, ગુજરાત",
+    "area": "ક્ષેત્રફળ (એકરમાં)",
+    "areaPlaceholder": "દા.ત. 5",
+    "soilType": "માટીનો પ્રકાર",
+    "noFarms": "હજુ સુધી કોઈ ખેતર ઉમેર્યું નથી",
+    "addFirstFarm": "તમારું પ્રથમ ખેતર ઉમેરો",
+    "acres": "એકર",
+    "soil": "માટી",
+    "deleteConfirm": "આ ખેતર કાઢી નાખવું છે? આ પૂર્વવત્ કરી શકાશે નહીં.",
+    "fillAllFields": "કૃપા કરીને બધા ફીલ્ડ ભરો",
+    "areaInvalid": "ક્ષેત્રફળ 0 કરતાં વધુ હોવું જોઈએ"
+  },
+  "soilTypes": {
+    "Loamy": "ગોરાડુ",
+    "Clay": "ચીકણી માટી",
+    "Sandy": "રેતાળ",
+    "Silty": "કાંપવાળી",
+    "Black Cotton": "કાળી કપાસિયા માટી"
+  },
+  "crops": {
+    "wheat": "ઘઉં",
+    "rice": "ચોખા",
+    "cotton": "કપાસ",
+    "sugarcane": "શેરડી",
+    "maize": "મકાઈ",
+    "groundnut": "મગફળી"
+  },
+  "diseases": {
+    "leaf_blight": "પર્ણ બળતરા રોગ",
+    "powdery_mildew": "ભૂકી છારો",
+    "rust": "કાટ રોગ",
+    "healthy": "તંદુરસ્ત"
+  },
+  "expenseCategories": {
+    "fertilizer": "ખાતર",
+    "seeds": "બિયારણ",
+    "labor": "મજૂરી",
+    "equipment": "સાધનો",
+    "irrigation": "સિંચાઈ"
+  }
+}

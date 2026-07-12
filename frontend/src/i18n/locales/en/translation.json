@@ -1,0 +1,95 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "logout": "Logout"
+  },
+  "auth": {
+    "selectLanguage": "Select your language",
+    "welcomeTitle": "Welcome to KrishiVerse",
+    "welcomeSubtitle": "Smart farming, made simple",
+    "loginTitle": "Login",
+    "signupTitle": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full Name",
+    "confirmPassword": "Confirm Password",
+    "loginButton": "Login",
+    "signupButton": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "continue": "Continue",
+    "continueWithGoogle": "Continue with Google"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "crop": "Crop",
+    "expense": "Expense",
+    "farm": "Farm",
+    "prediction": "Prediction",
+    "profile": "Profile"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of your farms, crops, and expenses",
+    "totalFarms": "Total Farms",
+    "activeCrops": "Active Crops",
+    "totalExpense": "Total Expense",
+    "diseaseAlerts": "Disease Alerts",
+    "expenseTrend": "Expense vs Revenue Trend",
+    "recentActivity": "Recent Activity",
+    "location": "Location"
+  },
+  "navbar": {
+    "search": "Search..."
+  },
+  "farm": {
+    "title": "Farms",
+    "subtitle": "Manage your registered farms",
+    "addFarm": "Add Farm",
+    "farmName": "Farm Name",
+    "farmNamePlaceholder": "e.g. Green Valley Farm",
+    "location": "Location",
+    "locationPlaceholder": "e.g. Vadodara, Gujarat",
+    "area": "Area (in acres)",
+    "areaPlaceholder": "e.g. 5",
+    "soilType": "Soil Type",
+    "noFarms": "No farms added yet",
+    "addFirstFarm": "Add your first farm",
+    "acres": "acres",
+    "soil": "soil",
+    "deleteConfirm": "Delete this farm? This cannot be undone.",
+    "fillAllFields": "Please fill in all fields",
+    "areaInvalid": "Area must be greater than 0"
+  },
+  "soilTypes": {
+    "Loamy": "Loamy",
+    "Clay": "Clay",
+    "Sandy": "Sandy",
+    "Silty": "Silty",
+    "Black Cotton": "Black Cotton"
+  },
+  "crops": {
+    "wheat": "Wheat",
+    "rice": "Rice",
+    "cotton": "Cotton",
+    "sugarcane": "Sugarcane",
+    "maize": "Maize",
+    "groundnut": "Groundnut"
+  },
+  "diseases": {
+    "leaf_blight": "Leaf Blight",
+    "powdery_mildew": "Powdery Mildew",
+    "rust": "Rust",
+    "healthy": "Healthy"
+  },
+  "expenseCategories": {
+    "fertilizer": "Fertilizer",
+    "seeds": "Seeds",
+    "labor": "Labor",
+    "equipment": "Equipment",
+    "irrigation": "Irrigation"
+  }
+}

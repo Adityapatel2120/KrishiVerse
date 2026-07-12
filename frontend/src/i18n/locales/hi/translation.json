@@ -1,0 +1,95 @@
+{
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "submit": "जमा करें",
+    "logout": "लॉगआउट"
+  },
+  "auth": {
+    "selectLanguage": "अपनी भाषा चुनें",
+    "welcomeTitle": "कृषिवर्स में आपका स्वागत है",
+    "welcomeSubtitle": "स्मार्ट खेती, आसान तरीके से",
+    "loginTitle": "लॉगिन",
+    "signupTitle": "खाता बनाएं",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "fullName": "पूरा नाम",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "loginButton": "लॉगिन करें",
+    "signupButton": "साइन अप करें",
+    "noAccount": "खाता नहीं है?",
+    "haveAccount": "पहले से खाता है?",
+    "continue": "जारी रखें",
+    "continueWithGoogle": "Google के साथ जारी रखें"
+  },
+  "sidebar": {
+    "dashboard": "डैशबोर्ड",
+    "crop": "फसल",
+    "expense": "खर्च",
+    "farm": "खेत",
+    "prediction": "पूर्वानुमान",
+    "profile": "प्रोफ़ाइल"
+  },
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "subtitle": "आपके खेतों, फसलों और खर्चों का विवरण",
+    "totalFarms": "कुल खेत",
+    "activeCrops": "सक्रिय फसलें",
+    "totalExpense": "कुल खर्च",
+    "diseaseAlerts": "रोग चेतावनी",
+    "expenseTrend": "खर्च बनाम आय रुझान",
+    "recentActivity": "हाल की गतिविधि",
+    "location": "स्थान"
+  },
+  "navbar": {
+    "search": "खोजें..."
+  },
+  "farm": {
+    "title": "खेत",
+    "subtitle": "अपने पंजीकृत खेतों का प्रबंधन करें",
+    "addFarm": "खेत जोड़ें",
+    "farmName": "खेत का नाम",
+    "farmNamePlaceholder": "उदा. ग्रीन वैली फार्म",
+    "location": "स्थान",
+    "locationPlaceholder": "उदा. वडोदरा, गुजरात",
+    "area": "क्षेत्रफल (एकड़ में)",
+    "areaPlaceholder": "उदा. 5",
+    "soilType": "मिट्टी का प्रकार",
+    "noFarms": "अभी तक कोई खेत नहीं जोड़ा गया",
+    "addFirstFarm": "अपना पहला खेत जोड़ें",
+    "acres": "एकड़",
+    "soil": "मिट्टी",
+    "deleteConfirm": "इस खेत को हटाएं? इसे पूर्ववत नहीं किया जा सकता।",
+    "fillAllFields": "कृपया सभी फ़ील्ड भरें",
+    "areaInvalid": "क्षेत्रफल 0 से अधिक होना चाहिए"
+  },
+  "soilTypes": {
+    "Loamy": "दोमट",
+    "Clay": "चिकनी मिट्टी",
+    "Sandy": "रेतीली",
+    "Silty": "गादयुक्त",
+    "Black Cotton": "काली कपासी मिट्टी"
+  },
+  "crops": {
+    "wheat": "गेहूं",
+    "rice": "चावल",
+    "cotton": "कपास",
+    "sugarcane": "गन्ना",
+    "maize": "मक्का",
+    "groundnut": "मूंगफली"
+  },
+  "diseases": {
+    "leaf_blight": "पत्ती झुलसा रोग",
+    "powdery_mildew": "चूर्णिल आसिता",
+    "rust": "रतुआ रोग",
+    "healthy": "स्वस्थ"
+  },
+  "expenseCategories": {
+    "fertilizer": "उर्वरक",
+    "seeds": "बीज",
+    "labor": "मज़दूरी",
+    "equipment": "उपकरण",
+    "irrigation": "सिंचाई"
+  }
+}
