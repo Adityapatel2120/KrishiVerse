@@ -1,12 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Bell, Search, ChevronDown } from "lucide-react";
+import { Bell, Search } from "lucide-react";
 import LanguageDropdown from "../common/LanguageDropdown";
-import { useAuth } from "../../hooks/useAuth";
+import UserMenu from "./UserMenu";
 
 const Navbar = () => {
   const { t } = useTranslation();
-  const { currentUser } = useAuth();
 
   return (
     <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6">
@@ -27,20 +26,7 @@ const Navbar = () => {
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
         </button>
 
-        <div className="flex items-center gap-2 cursor-pointer">
-          {currentUser?.photoURL ? (
-            <img
-              src={currentUser.photoURL}
-              alt={currentUser.displayName}
-              className="w-9 h-9 rounded-full"
-            />
-          ) : (
-            <div className="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-semibold text-sm">
-              {currentUser?.displayName?.[0] || "U"}
-            </div>
-          )}
-          <ChevronDown size={16} className="text-gray-400" />
-        </div>
+        <UserMenu />
       </div>
     </header>
   );
