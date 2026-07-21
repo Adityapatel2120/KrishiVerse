@@ -49,6 +49,7 @@
     "title": "ખેતરો",
     "subtitle": "તમારા નોંધાયેલા ખેતરોનું સંચાલન કરો",
     "addFarm": "ખેતર ઉમેરો",
+    "editFarm": "ખેતર સંપાદિત કરો",
     "farmName": "ખેતરનું નામ",
     "farmNamePlaceholder": "દા.ત. ગ્રીન વેલી ફાર્મ",
     "location": "સ્થાન",
@@ -70,6 +71,52 @@
     "Sandy": "રેતાળ",
     "Silty": "કાંપવાળી",
     "Black Cotton": "કાળી કપાસિયા માટી"
+  },
+  "crop": {
+    "title": "પાકો",
+    "subtitle": "તમારા ખેતરોના પાકોને ટ્રેક કરો",
+    "addCrop": "પાક ઉમેરો",
+    "editCrop": "પાક સંપાદિત કરો",
+    "cropType": "પાકનો પ્રકાર",
+    "selectFarm": "ખેતર પસંદ કરો",
+    "sownDate": "વાવણીની તારીખ",
+    "areaInAcres": "ક્ષેત્રફળ (એકરમાં)",
+    "status": "સ્થિતિ",
+    "noCrops": "હજુ સુધી કોઈ પાક ઉમેર્યો નથી",
+    "addFirstCrop": "તમારો પ્રથમ પાક ઉમેરો",
+    "deleteConfirm": "આ પાક રેકોર્ડ કાઢી નાખવો છે?",
+    "statusGrowing": "વધી રહ્યો છે",
+    "statusHarvested": "લણવામાં આવ્યો",
+    "statusDiseased": "રોગગ્રસ્ત",
+    "noFarmsWarning": "પાક ઉમેરતા પહેલા ખેતર ઉમેરો"
+  },
+  "expense": {
+    "title": "ખર્ચ",
+    "subtitle": "તમારા ખેતી ખર્ચને ટ્રેક કરો",
+    "addExpense": "ખર્ચ ઉમેરો",
+    "editExpense": "ખર્ચ સંપાદિત કરો",
+    "category": "શ્રેણી",
+    "amount": "રકમ (₹)",
+    "date": "તારીખ",
+    "note": "નોંધ (વૈકલ્પિક)",
+    "noExpenses": "હજુ સુધી કોઈ ખર્ચ નોંધાયો નથી",
+    "addFirstExpense": "તમારો પ્રથમ ખર્ચ ઉમેરો",
+    "deleteConfirm": "આ ખર્ચ રેકોર્ડ કાઢી નાખવો છે?",
+    "total": "કુલ"
+  },
+  "profile": {
+    "title": "પ્રોફાઇલ",
+    "accountInfo": "ખાતાની માહિતી",
+    "name": "નામ",
+    "email": "ઈમેલ",
+    "memberSince": "સભ્ય બન્યા"
+  },
+  "prediction": {
+    "title": "પાક રોગ આગાહી",
+    "subtitle": "સંભવિત રોગ શોધવા માટે પાનની છબી અપલોડ કરો",
+    "uploadPrompt": "છબી અપલોડ કરવા માટે અહીં ક્લિક કરો અથવા ખેંચો",
+    "analyze": "છબીનું વિશ્લેષણ કરો",
+    "comingSoon": "AI મોડેલ એકીકરણ પ્રગતિમાં છે"
   },
   "crops": {
     "wheat": "ઘઉં",

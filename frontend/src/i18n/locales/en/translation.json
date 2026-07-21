@@ -49,6 +49,7 @@
     "title": "Farms",
     "subtitle": "Manage your registered farms",
     "addFarm": "Add Farm",
+    "editFarm": "Edit Farm",
     "farmName": "Farm Name",
     "farmNamePlaceholder": "e.g. Green Valley Farm",
     "location": "Location",
@@ -70,6 +71,52 @@
     "Sandy": "Sandy",
     "Silty": "Silty",
     "Black Cotton": "Black Cotton"
+  },
+  "crop": {
+    "title": "Crops",
+    "subtitle": "Track crops across your farms",
+    "addCrop": "Add Crop",
+    "editCrop": "Edit Crop",
+    "cropType": "Crop Type",
+    "selectFarm": "Select Farm",
+    "sownDate": "Sown Date",
+    "areaInAcres": "Area (in acres)",
+    "status": "Status",
+    "noCrops": "No crops added yet",
+    "addFirstCrop": "Add your first crop",
+    "deleteConfirm": "Delete this crop record?",
+    "statusGrowing": "Growing",
+    "statusHarvested": "Harvested",
+    "statusDiseased": "Diseased",
+    "noFarmsWarning": "Add a farm first before adding crops"
+  },
+  "expense": {
+    "title": "Expenses",
+    "subtitle": "Track your farming expenses",
+    "addExpense": "Add Expense",
+    "editExpense": "Edit Expense",
+    "category": "Category",
+    "amount": "Amount (₹)",
+    "date": "Date",
+    "note": "Note (optional)",
+    "noExpenses": "No expenses recorded yet",
+    "addFirstExpense": "Add your first expense",
+    "deleteConfirm": "Delete this expense record?",
+    "total": "Total"
+  },
+  "profile": {
+    "title": "Profile",
+    "accountInfo": "Account Information",
+    "name": "Name",
+    "email": "Email",
+    "memberSince": "Member Since"
+  },
+  "prediction": {
+    "title": "Crop Disease Prediction",
+    "subtitle": "Upload a leaf image to detect possible disease",
+    "uploadPrompt": "Click or drag an image here to upload",
+    "analyze": "Analyze Image",
+    "comingSoon": "AI model integration in progress"
   },
   "crops": {
     "wheat": "Wheat",

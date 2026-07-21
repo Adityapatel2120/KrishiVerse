@@ -49,6 +49,7 @@
     "title": "खेत",
     "subtitle": "अपने पंजीकृत खेतों का प्रबंधन करें",
     "addFarm": "खेत जोड़ें",
+    "editFarm": "खेत संपादित करें",
     "farmName": "खेत का नाम",
     "farmNamePlaceholder": "उदा. ग्रीन वैली फार्म",
     "location": "स्थान",
@@ -70,6 +71,52 @@
     "Sandy": "रेतीली",
     "Silty": "गादयुक्त",
     "Black Cotton": "काली कपासी मिट्टी"
+  },
+  "crop": {
+    "title": "फसलें",
+    "subtitle": "अपने खेतों की फसलों को ट्रैक करें",
+    "addCrop": "फसल जोड़ें",
+    "editCrop": "फसल संपादित करें",
+    "cropType": "फसल प्रकार",
+    "selectFarm": "खेत चुनें",
+    "sownDate": "बुवाई की तारीख",
+    "areaInAcres": "क्षेत्रफल (एकड़ में)",
+    "status": "स्थिति",
+    "noCrops": "अभी तक कोई फसल नहीं जोड़ी गई",
+    "addFirstCrop": "अपनी पहली फसल जोड़ें",
+    "deleteConfirm": "इस फसल रिकॉर्ड को हटाएं?",
+    "statusGrowing": "बढ़ रही है",
+    "statusHarvested": "काटी गई",
+    "statusDiseased": "रोगग्रस्त",
+    "noFarmsWarning": "फसल जोड़ने से पहले एक खेत जोड़ें"
+  },
+  "expense": {
+    "title": "खर्च",
+    "subtitle": "अपने कृषि खर्चों को ट्रैक करें",
+    "addExpense": "खर्च जोड़ें",
+    "editExpense": "खर्च संपादित करें",
+    "category": "श्रेणी",
+    "amount": "राशि (₹)",
+    "date": "तारीख",
+    "note": "नोट (वैकल्पिक)",
+    "noExpenses": "अभी तक कोई खर्च दर्ज नहीं किया गया",
+    "addFirstExpense": "अपना पहला खर्च जोड़ें",
+    "deleteConfirm": "इस खर्च रिकॉर्ड को हटाएं?",
+    "total": "कुल"
+  },
+  "profile": {
+    "title": "प्रोफ़ाइल",
+    "accountInfo": "खाता जानकारी",
+    "name": "नाम",
+    "email": "ईमेल",
+    "memberSince": "सदस्य बने"
+  },
+  "prediction": {
+    "title": "फसल रोग पूर्वानुमान",
+    "subtitle": "संभावित रोग का पता लगाने के लिए पत्ती की छवि अपलोड करें",
+    "uploadPrompt": "छवि अपलोड करने के लिए यहां क्लिक करें या खींचें",
+    "analyze": "छवि का विश्लेषण करें",
+    "comingSoon": "एआई मॉडल एकीकरण प्रगति पर है"
   },
   "crops": {
     "wheat": "गेहूं",
