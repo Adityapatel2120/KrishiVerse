@@ -4,8 +4,9 @@ import { AuthProvider } from "./context/AuthContext";
 import { FarmProvider } from "./context/FarmContext";
 import { CropProvider } from "./context/CropContext";
 import { ExpenseProvider } from "./context/ExpenseContext";
+import { PredictionProvider } from "./context/PredictionContext";
+import { RevenueProvider } from "./context/RevenueContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import PublicRoute from "./routes/PublicRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Dashboard from "./pages/dashboard/Dashboard";
 import LanguageSelect from "./pages/auth/LanguageSelect";
@@ -15,6 +16,7 @@ import CropList from "./pages/crop/CropList";
 import ExpenseList from "./pages/expense/ExpenseList";
 import Profile from "./pages/profile/Profile";
 import Prediction from "./pages/prediction/Prediction";
+import Analytics from "./pages/analytics/Analytics";
 import NotFound from "./pages/common/NotFound";
 
 function App() {
@@ -23,36 +25,34 @@ function App() {
       <FarmProvider>
         <CropProvider>
           <ExpenseProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<LanguageSelect />} />
-                <Route
-                  path="/login"
-                  element={
-                    <PublicRoute>
-                      <Login />
-                    </PublicRoute>
-                  }
-                />
+            <PredictionProvider>
+              <RevenueProvider>
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<LanguageSelect />} />
+                    <Route path="/login" element={<Login />} />
 
-                <Route
-                  element={
-                    <ProtectedRoute>
-                      <DashboardLayout />
-                    </ProtectedRoute>
-                  }
-                >
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/farm" element={<FarmList />} />
-                  <Route path="/crop" element={<CropList />} />
-                  <Route path="/expense" element={<ExpenseList />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/prediction" element={<Prediction />} />
-                </Route>
+                    <Route
+                      element={
+                        <ProtectedRoute>
+                          <DashboardLayout />
+                        </ProtectedRoute>
+                      }
+                    >
+                      <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/farm" element={<FarmList />} />
+                      <Route path="/crop" element={<CropList />} />
+                      <Route path="/expense" element={<ExpenseList />} />
+                      <Route path="/profile" element={<Profile />} />
+                      <Route path="/prediction" element={<Prediction />} />
+                      <Route path="/analytics" element={<Analytics />} />
+                    </Route>
 
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </RevenueProvider>
+            </PredictionProvider>
           </ExpenseProvider>
         </CropProvider>
       </FarmProvider>
