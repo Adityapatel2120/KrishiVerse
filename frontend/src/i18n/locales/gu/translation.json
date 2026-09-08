@@ -4,7 +4,9 @@
     "save": "સાચવો",
     "cancel": "રદ કરો",
     "submit": "સબમિટ કરો",
-    "logout": "લૉગઆઉટ"
+    "logout": "લૉગઆઉટ",
+    "delete": "કાઢી નાખો",
+    "retry": "ફરી પ્રયાસ કરો"
   },
   "auth": {
     "selectLanguage": "તમારી ભાષા પસંદ કરો",
@@ -29,7 +31,8 @@
     "expense": "ખર્ચ",
     "farm": "ખેતર",
     "prediction": "આગાહી",
-    "profile": "પ્રોફાઇલ"
+    "profile": "પ્રોફાઇલ",
+    "analytics": "વિશ્લેષણ"
   },
   "dashboard": {
     "title": "ડેશબોર્ડ",
@@ -40,7 +43,9 @@
     "diseaseAlerts": "રોગ ચેતવણી",
     "expenseTrend": "ખર્ચ વિ આવક વલણ",
     "recentActivity": "તાજેતરની પ્રવૃત્તિ",
-    "location": "સ્થાન"
+    "location": "તમારું સ્થાન",
+    "locationDenied": "સ્થાનની પરવાનગી નકારવામાં આવી. સ્થાનિક હવામાન જોવા માટે તમારા બ્રાઉઝર સેટિંગ્સમાં તેને સક્ષમ કરો.",
+    "locationError": "અત્યારે હવામાન લોડ થઈ શક્યું નથી."
   },
   "navbar": {
     "search": "શોધો..."
@@ -88,7 +93,10 @@
     "statusGrowing": "વધી રહ્યો છે",
     "statusHarvested": "લણવામાં આવ્યો",
     "statusDiseased": "રોગગ્રસ્ત",
-    "noFarmsWarning": "પાક ઉમેરતા પહેલા ખેતર ઉમેરો"
+    "statusLocked": "લણ્યા પછી બદલી શકાશે નહીં",
+    "noFarmsWarning": "પાક ઉમેરતા પહેલા ખેતર ઉમેરો",
+    "areaExceedsCapacity": "આ ખેતરમાં ફક્ત {{remaining}} એકર ઉપલબ્ધ છે",
+    "availableArea": "{{total}} માંથી {{remaining}} એકર ઉપલબ્ધ"
   },
   "expense": {
     "title": "ખર્ચ",
@@ -104,6 +112,16 @@
     "deleteConfirm": "આ ખર્ચ રેકોર્ડ કાઢી નાખવો છે?",
     "total": "કુલ"
   },
+  "revenue": {
+    "title": "આવક",
+    "addRevenue": "આવક ઉમેરો",
+    "editRevenue": "આવક સંપાદિત કરો",
+    "amount": "મળેલી રકમ (₹)",
+    "date": "વેચાણ તારીખ",
+    "buyerName": "ખરીદનારનું નામ (વૈકલ્પિક)",
+    "buyerNamePlaceholder": "દા.ત. સ્થાનિક મંડી, વેપારીનું નામ",
+    "note": "નોંધ (વૈકલ્પિક)"
+  },
   "profile": {
     "title": "પ્રોફાઇલ",
     "accountInfo": "ખાતાની માહિતી",
@@ -116,7 +134,33 @@
     "subtitle": "સંભવિત રોગ શોધવા માટે પાનની છબી અપલોડ કરો",
     "uploadPrompt": "છબી અપલોડ કરવા માટે અહીં ક્લિક કરો અથવા ખેંચો",
     "analyze": "છબીનું વિશ્લેષણ કરો",
-    "comingSoon": "AI મોડેલ એકીકરણ પ્રગતિમાં છે"
+    "comingSoon": "AI મોડેલ એકીકરણ પ્રગતિમાં છે",
+    "selectCropLabel": "આ કયો પાક છે?",
+    "selectCropAny": "ખબર નથી / કોઈપણ પાક",
+    "useCamera": "કેમેરા",
+    "capturePhoto": "ફોટો લો",
+    "cameraError": "કેમેરા એક્સેસ થઈ શક્યો નથી. કૃપા કરીને પરવાનગીઓ તપાસો.",
+    "analyzeError": "છબીનું વિશ્લેષણ થઈ શક્યું નથી. કૃપા કરીને ફરી પ્રયાસ કરો.",
+    "resultLabel": "આગાહી પરિણામ",
+    "confidence": "વિશ્વાસ સ્તર",
+    "recommendedAction": "ભલામણ કરેલ પગલું",
+    "historyTitle": "આગાહી ઇતિહાસ",
+    "changeImage": "છબી બદલો",
+    "deleteConfirm": "આ આગાહી રેકોર્ડ કાઢી નાખવો છે?",
+    "deleteAll": "બધું કાઢી નાખો",
+    "deleteAllConfirm": "બધો આગાહી ઇતિહાસ કાઢી નાખવો છે? આ પૂર્વવત્ કરી શકાશે નહીં."
+  },
+  "analytics": {
+    "title": "વિશ્લેષણ અને અહેવાલો",
+    "subtitle": "તમારા ખેતરો, પાકો અને ખર્ચની માહિતી",
+    "noData": "માહિતી જોવા માટે ખેતરો, પાકો અને ખર્ચ ઉમેરો",
+    "totalArea": "કુલ ખેતી વિસ્તાર",
+    "avgExpense": "ખેતર દીઠ સરેરાશ ખર્ચ",
+    "totalCrops": "કુલ પાક રેકોર્ડ",
+    "expenseByCategory": "શ્રેણી પ્રમાણે ખર્ચ",
+    "cropStatus": "પાક સ્થિતિ વિહંગાવલોકન",
+    "cropDistribution": "પાક પ્રકાર વિતરણ",
+    "areaByFarm": "ખેતર પ્રમાણે વિસ્તાર"
   },
   "crops": {
     "wheat": "ઘઉં",
