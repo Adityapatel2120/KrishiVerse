@@ -55,7 +55,9 @@ const CropList = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {crops.map((crop) => (
-            <CropCard key={crop.id} crop={crop} onEdit={handleEditClick} />
+            <CropCard key={crop._id} 
+                      crop={crop} 
+                      onEdit={handleEditClick} />
           ))}
         </div>
       )}

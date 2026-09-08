@@ -1,60 +1,104 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import {
+  getCrops,
+  createCrop,
+  updateCrop as updateCropAPI,
+  deleteCrop as deleteCropAPI,
+} from "../api/cropApi";
 
 export const CropContext = createContext(null);
 
 export const CropProvider = ({ children }) => {
   const { currentUser } = useAuth();
+
   const [crops, setCrops] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const storageKey = currentUser ? `krishiverse_crops_${currentUser.uid}` : null;
-
+  // Load crops for the logged-in user from MongoDB
   useEffect(() => {
-    if (!storageKey) {
-      setCrops([]);
-      setLoading(false);
-      return;
+    const loadCrops = async () => {
+      if (!currentUser) {
+        setCrops([]);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+
+        const data = await getCrops(currentUser.uid);
+
+        setCrops(data);
+      } catch (error) {
+        console.error("Error loading crops:", error);
+        setCrops([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCrops();
+  }, [currentUser]);
+
+  // Create a crop in MongoDB
+  const addCrop = async (crop) => {
+    if (!currentUser) {
+      throw new Error("User is not logged in");
     }
-    const stored = localStorage.getItem(storageKey);
-    setCrops(stored ? JSON.parse(stored) : []);
-    setLoading(false);
-  }, [storageKey]);
 
-  const persist = (updated) => {
-    setCrops(updated);
-    if (storageKey) localStorage.setItem(storageKey, JSON.stringify(updated));
-  };
-
-  const addCrop = (crop) => {
-    const newCrop = {
-      id: `crop_${Date.now()}`,
+    const newCrop = await createCrop({
+      userId: currentUser.uid,
       type: crop.type,
       farmId: crop.farmId,
       sownDate: crop.sownDate,
       areaInAcres: Number(crop.areaInAcres),
       status: crop.status || "growing",
-      createdAt: new Date().toISOString(),
-    };
-    persist([...crops, newCrop]);
+    });
+
+    setCrops((prev) => [...prev, newCrop]);
+
     return newCrop;
   };
 
-  const updateCrop = (id, updates) => {
-    const updated = crops.map((c) =>
-      c.id === id
-        ? { ...c, ...updates, areaInAcres: Number(updates.areaInAcres) }
-        : c
+  // Update a crop using its MongoDB _id
+  const updateCrop = async (id, updates) => {
+    const updatedCrop = await updateCropAPI(id, {
+      type: updates.type,
+      farmId: updates.farmId,
+      sownDate: updates.sownDate,
+      areaInAcres: Number(updates.areaInAcres),
+      status: updates.status,
+    });
+
+    setCrops((prev) =>
+      prev.map((crop) =>
+        crop._id === id ? updatedCrop : crop
+      )
     );
-    persist(updated);
+
+    return updatedCrop;
   };
 
-  const deleteCrop = (id) => {
-    persist(crops.filter((c) => c.id !== id));
+  // Delete a crop using its MongoDB _id
+  const deleteCrop = async (id) => {
+    await deleteCropAPI(id);
+
+    setCrops((prev) =>
+      prev.filter((crop) => crop._id !== id)
+    );
   };
 
   return (
-    <CropContext.Provider value={{ crops, loading, addCrop, updateCrop, deleteCrop }}>
+    <CropContext.Provider
+      value={{
+        crops,
+        loading,
+        addCrop,
+        updateCrop,
+        deleteCrop,
+      }}
+    >
       {children}
     </CropContext.Provider>
   );
