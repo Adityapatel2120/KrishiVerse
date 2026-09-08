@@ -4,7 +4,9 @@
     "save": "Save",
     "cancel": "Cancel",
     "submit": "Submit",
-    "logout": "Logout"
+    "logout": "Logout",
+    "delete": "Delete",
+    "retry": "Retry"
   },
   "auth": {
     "selectLanguage": "Select your language",
@@ -29,7 +31,8 @@
     "expense": "Expense",
     "farm": "Farm",
     "prediction": "Prediction",
-    "profile": "Profile"
+    "profile": "Profile",
+    "analytics": "Analytics"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -40,7 +43,9 @@
     "diseaseAlerts": "Disease Alerts",
     "expenseTrend": "Expense vs Revenue Trend",
     "recentActivity": "Recent Activity",
-    "location": "Location"
+    "location": "Your location",
+    "locationDenied": "Location access denied. Enable it in your browser settings to see local weather.",
+    "locationError": "Couldn't load weather right now."
   },
   "navbar": {
     "search": "Search..."
@@ -88,7 +93,10 @@
     "statusGrowing": "Growing",
     "statusHarvested": "Harvested",
     "statusDiseased": "Diseased",
-    "noFarmsWarning": "Add a farm first before adding crops"
+    "statusLocked": "cannot be changed once harvested",
+    "noFarmsWarning": "Add a farm first before adding crops",
+    "areaExceedsCapacity": "Only {{remaining}} acres available on this farm",
+    "availableArea": "{{remaining}} of {{total}} acres available"
   },
   "expense": {
     "title": "Expenses",
@@ -104,6 +112,16 @@
     "deleteConfirm": "Delete this expense record?",
     "total": "Total"
   },
+  "revenue": {
+    "title": "Revenue",
+    "addRevenue": "Add Revenue",
+    "editRevenue": "Edit Revenue",
+    "amount": "Amount Earned (₹)",
+    "date": "Sale Date",
+    "buyerName": "Buyer Name (optional)",
+    "buyerNamePlaceholder": "e.g. Local Mandi, Trader name",
+    "note": "Note (optional)"
+  },
   "profile": {
     "title": "Profile",
     "accountInfo": "Account Information",
@@ -116,7 +134,33 @@
     "subtitle": "Upload a leaf image to detect possible disease",
     "uploadPrompt": "Click or drag an image here to upload",
     "analyze": "Analyze Image",
-    "comingSoon": "AI model integration in progress"
+    "comingSoon": "AI model integration in progress",
+    "selectCropLabel": "Which crop is this?",
+    "selectCropAny": "Not sure / any crop",
+    "useCamera": "Camera",
+    "capturePhoto": "Capture Photo",
+    "cameraError": "Could not access camera. Please check permissions.",
+    "analyzeError": "Could not analyze image. Please try again.",
+    "resultLabel": "Prediction Result",
+    "confidence": "Confidence",
+    "recommendedAction": "Recommended Action",
+    "historyTitle": "Prediction History",
+    "changeImage": "Change Image",
+    "deleteConfirm": "Delete this prediction record?",
+    "deleteAll": "Delete All",
+    "deleteAllConfirm": "Delete all prediction history? This cannot be undone."
+  },
+  "analytics": {
+    "title": "Analytics & Reports",
+    "subtitle": "Insights across your farms, crops, and expenses",
+    "noData": "Add farms, crops, and expenses to see insights here",
+    "totalArea": "Total Cultivated Area",
+    "avgExpense": "Avg. Expense per Farm",
+    "totalCrops": "Total Crop Records",
+    "expenseByCategory": "Expense by Category",
+    "cropStatus": "Crop Status Overview",
+    "cropDistribution": "Crop Type Distribution",
+    "areaByFarm": "Cultivated Area by Farm"
   },
   "crops": {
     "wheat": "Wheat",
