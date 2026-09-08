@@ -4,7 +4,9 @@
     "save": "सहेजें",
     "cancel": "रद्द करें",
     "submit": "जमा करें",
-    "logout": "लॉगआउट"
+    "logout": "लॉगआउट",
+    "delete": "हटाएं",
+    "retry": "पुनः प्रयास करें"
   },
   "auth": {
     "selectLanguage": "अपनी भाषा चुनें",
@@ -29,7 +31,8 @@
     "expense": "खर्च",
     "farm": "खेत",
     "prediction": "पूर्वानुमान",
-    "profile": "प्रोफ़ाइल"
+    "profile": "प्रोफ़ाइल",
+    "analytics": "विश्लेषण"
   },
   "dashboard": {
     "title": "डैशबोर्ड",
@@ -40,7 +43,9 @@
     "diseaseAlerts": "रोग चेतावनी",
     "expenseTrend": "खर्च बनाम आय रुझान",
     "recentActivity": "हाल की गतिविधि",
-    "location": "स्थान"
+    "location": "आपका स्थान",
+    "locationDenied": "स्थान की अनुमति अस्वीकृत। स्थानीय मौसम देखने के लिए इसे अपनी ब्राउज़र सेटिंग्स में सक्षम करें।",
+    "locationError": "अभी मौसम लोड नहीं हो सका।"
   },
   "navbar": {
     "search": "खोजें..."
@@ -88,7 +93,10 @@
     "statusGrowing": "बढ़ रही है",
     "statusHarvested": "काटी गई",
     "statusDiseased": "रोगग्रस्त",
-    "noFarmsWarning": "फसल जोड़ने से पहले एक खेत जोड़ें"
+    "statusLocked": "कटाई के बाद बदला नहीं जा सकता",
+    "noFarmsWarning": "फसल जोड़ने से पहले एक खेत जोड़ें",
+    "areaExceedsCapacity": "इस खेत में केवल {{remaining}} एकड़ उपलब्ध है",
+    "availableArea": "{{total}} में से {{remaining}} एकड़ उपलब्ध"
   },
   "expense": {
     "title": "खर्च",
@@ -104,6 +112,16 @@
     "deleteConfirm": "इस खर्च रिकॉर्ड को हटाएं?",
     "total": "कुल"
   },
+  "revenue": {
+    "title": "आय",
+    "addRevenue": "आय जोड़ें",
+    "editRevenue": "आय संपादित करें",
+    "amount": "प्राप्त राशि (₹)",
+    "date": "बिक्री तिथि",
+    "buyerName": "खरीदार का नाम (वैकल्पिक)",
+    "buyerNamePlaceholder": "उदा. स्थानीय मंडी, व्यापारी का नाम",
+    "note": "नोट (वैकल्पिक)"
+  },
   "profile": {
     "title": "प्रोफ़ाइल",
     "accountInfo": "खाता जानकारी",
@@ -116,7 +134,33 @@
     "subtitle": "संभावित रोग का पता लगाने के लिए पत्ती की छवि अपलोड करें",
     "uploadPrompt": "छवि अपलोड करने के लिए यहां क्लिक करें या खींचें",
     "analyze": "छवि का विश्लेषण करें",
-    "comingSoon": "एआई मॉडल एकीकरण प्रगति पर है"
+    "comingSoon": "एआई मॉडल एकीकरण प्रगति पर है",
+    "selectCropLabel": "यह कौन सी फसल है?",
+    "selectCropAny": "पता नहीं / कोई भी फसल",
+    "useCamera": "कैमरा",
+    "capturePhoto": "फोटो लें",
+    "cameraError": "कैमरा एक्सेस नहीं हो सका। कृपया अनुमतियां जांचें।",
+    "analyzeError": "छवि का विश्लेषण नहीं हो सका। कृपया पुनः प्रयास करें।",
+    "resultLabel": "पूर्वानुमान परिणाम",
+    "confidence": "विश्वास स्तर",
+    "recommendedAction": "अनुशंसित कार्रवाई",
+    "historyTitle": "पूर्वानुमान इतिहास",
+    "changeImage": "छवि बदलें",
+    "deleteConfirm": "इस पूर्वानुमान रिकॉर्ड को हटाएं?",
+    "deleteAll": "सभी हटाएं",
+    "deleteAllConfirm": "सभी पूर्वानुमान इतिहास हटाएं? इसे पूर्ववत नहीं किया जा सकता।"
+  },
+  "analytics": {
+    "title": "विश्लेषण और रिपोर्ट",
+    "subtitle": "आपके खेतों, फसलों और खर्चों की जानकारी",
+    "noData": "जानकारी देखने के लिए खेत, फसलें और खर्च जोड़ें",
+    "totalArea": "कुल खेती क्षेत्र",
+    "avgExpense": "प्रति खेत औसत खर्च",
+    "totalCrops": "कुल फसल रिकॉर्ड",
+    "expenseByCategory": "श्रेणी अनुसार खर्च",
+    "cropStatus": "फसल स्थिति अवलोकन",
+    "cropDistribution": "फसल प्रकार वितरण",
+    "areaByFarm": "खेत अनुसार क्षेत्रफल"
   },
   "crops": {
     "wheat": "गेहूं",
