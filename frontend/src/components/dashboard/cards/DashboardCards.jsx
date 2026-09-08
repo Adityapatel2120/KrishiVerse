@@ -5,20 +5,26 @@ import StatCard from "./StatCard";
 import { useFarm } from "../../../hooks/useFarm";
 import { useCrop } from "../../../hooks/useCrop";
 import { useExpense } from "../../../hooks/useExpense";
+import { usePrediction } from "../../../hooks/usePrediction";
 
 const DashboardCards = () => {
   const { t } = useTranslation();
   const { farms } = useFarm();
   const { crops } = useCrop();
   const { totalExpense } = useExpense();
+  const { predictions } = usePrediction();
 
-  const diseasedCount = crops.filter((c) => c.status === "diseased").length;
+  // Count recent (last 30 days) non-healthy predictions as active disease alerts
+  const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+  const diseaseAlertCount = predictions.filter(
+    (p) => !p.predictedClass.includes("healthy") && new Date(p.createdAt).getTime() > thirtyDaysAgo
+  ).length;
 
   const cardData = [
     { title: t("dashboard.totalFarms"), value: farms.length, icon: Tractor, color: "green" },
     { title: t("dashboard.activeCrops"), value: crops.length, icon: Sprout, color: "blue" },
     { title: t("dashboard.totalExpense"), value: `₹${totalExpense.toLocaleString("en-IN")}`, icon: Wallet, color: "amber" },
-    { title: t("dashboard.diseaseAlerts"), value: diseasedCount, icon: AlertTriangle, color: "red" },
+    { title: t("dashboard.diseaseAlerts"), value: diseaseAlertCount, icon: AlertTriangle, color: "red" },
   ];
 
   return (

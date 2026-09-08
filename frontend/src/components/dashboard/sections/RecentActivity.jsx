@@ -1,20 +1,28 @@
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Tractor, Sprout, Wallet, Inbox } from "lucide-react";
+import { Tractor, Sprout, Wallet, Inbox, AlertTriangle } from "lucide-react";
 import { useFarm } from "../../../hooks/useFarm";
 import { useCrop } from "../../../hooks/useCrop";
 import { useExpense } from "../../../hooks/useExpense";
+import { usePrediction } from "../../../hooks/usePrediction";
+
+const formatClassName = (className) => {
+  return className
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 const RecentActivity = () => {
   const { t } = useTranslation();
   const { farms } = useFarm();
   const { crops } = useCrop();
   const { expenses } = useExpense();
+  const { predictions } = usePrediction();
 
   const activities = useMemo(() => {
     const farmActivities = farms.map((f) => ({
-      id: f.id,
-      type: "farm",
+      id: f._id,
       text: `${t("farm.addFarm")}: ${f.name}`,
       createdAt: f.createdAt,
       icon: Tractor,
@@ -22,8 +30,7 @@ const RecentActivity = () => {
     }));
 
     const cropActivities = crops.map((c) => ({
-      id: c.id,
-      type: "crop",
+      id: c._id,
       text: `${t("crop.addCrop")}: ${t(`crops.${c.type}`)}`,
       createdAt: c.createdAt,
       icon: Sprout,
@@ -31,18 +38,27 @@ const RecentActivity = () => {
     }));
 
     const expenseActivities = expenses.map((e) => ({
-      id: e.id,
-      type: "expense",
+      id: e._id,
       text: `${t(`expenseCategories.${e.category}`)} · ₹${e.amount.toLocaleString("en-IN")}`,
       createdAt: e.createdAt,
       icon: Wallet,
       color: "text-amber-600 bg-amber-50",
     }));
 
-    return [...farmActivities, ...cropActivities, ...expenseActivities]
+    const diseaseActivities = predictions
+      .filter((p) => !p.predictedClass.includes("healthy"))
+      .map((p) => ({
+        id: p._id,
+        text: `${t("dashboard.diseaseAlerts")}: ${formatClassName(p.predictedClass)} (${p.confidence}%)`,
+        createdAt: p.createdAt,
+        icon: AlertTriangle,
+        color: "text-red-600 bg-red-50",
+      }));
+
+    return [...farmActivities, ...cropActivities, ...expenseActivities, ...diseaseActivities]
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       .slice(0, 6);
-  }, [farms, crops, expenses, t]);
+  }, [farms, crops, expenses, predictions, t]);
 
   const timeAgo = (dateStr) => {
     const diffMs = Date.now() - new Date(dateStr).getTime();
