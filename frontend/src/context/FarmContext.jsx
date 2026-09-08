@@ -1,59 +1,102 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import {
+  getFarms,
+  createFarm,
+  updateFarm as updateFarmAPI,
+  deleteFarm as deleteFarmAPI,
+} from "../api/farmApi";
 
 export const FarmContext = createContext(null);
 
 export const FarmProvider = ({ children }) => {
   const { currentUser } = useAuth();
+
   const [farms, setFarms] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const storageKey = currentUser ? `krishiverse_farms_${currentUser.uid}` : null;
-
+  // Load farms for the logged-in user from MongoDB
   useEffect(() => {
-    if (!storageKey) {
-      setFarms([]);
-      setLoading(false);
-      return;
+    const loadFarms = async () => {
+      if (!currentUser) {
+        setFarms([]);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+
+        const data = await getFarms(currentUser.uid);
+
+        setFarms(data);
+      } catch (error) {
+        console.error("Error loading farms:", error);
+        setFarms([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadFarms();
+  }, [currentUser]);
+
+  // Create a farm in MongoDB
+  const addFarm = async (farm) => {
+    if (!currentUser) {
+      throw new Error("User is not logged in");
     }
-    const stored = localStorage.getItem(storageKey);
-    setFarms(stored ? JSON.parse(stored) : []);
-    setLoading(false);
-  }, [storageKey]);
 
-  const persist = (updatedFarms) => {
-    setFarms(updatedFarms);
-    if (storageKey) localStorage.setItem(storageKey, JSON.stringify(updatedFarms));
-  };
-
-  const addFarm = (farm) => {
-    const newFarm = {
-      id: `farm_${Date.now()}`,
+    const newFarm = await createFarm({
+      userId: currentUser.uid,
       name: farm.name,
       location: farm.location,
       areaInAcres: Number(farm.areaInAcres),
       soilType: farm.soilType,
-      createdAt: new Date().toISOString(),
-    };
-    persist([...farms, newFarm]);
+    });
+
+    setFarms((prev) => [...prev, newFarm]);
+
     return newFarm;
   };
 
-  const updateFarm = (id, updates) => {
-    const updated = farms.map((f) =>
-      f.id === id
-        ? { ...f, ...updates, areaInAcres: Number(updates.areaInAcres) }
-        : f
+  // Update a farm using its MongoDB _id
+  const updateFarm = async (id, updates) => {
+    const updatedFarm = await updateFarmAPI(id, {
+      name: updates.name,
+      location: updates.location,
+      areaInAcres: Number(updates.areaInAcres),
+      soilType: updates.soilType,
+    });
+
+    setFarms((prev) =>
+      prev.map((farm) =>
+        farm._id === id ? updatedFarm : farm
+      )
     );
-    persist(updated);
+
+    return updatedFarm;
   };
 
-  const deleteFarm = (id) => {
-    persist(farms.filter((f) => f.id !== id));
+  // Delete a farm using its MongoDB _id
+  const deleteFarm = async (id) => {
+    await deleteFarmAPI(id);
+
+    setFarms((prev) =>
+      prev.filter((farm) => farm._id !== id)
+    );
   };
 
   return (
-    <FarmContext.Provider value={{ farms, loading, addFarm, updateFarm, deleteFarm }}>
+    <FarmContext.Provider
+      value={{
+        farms,
+        loading,
+        addFarm,
+        updateFarm,
+        deleteFarm,
+      }}
+    >
       {children}
     </FarmContext.Provider>
   );

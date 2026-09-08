@@ -1,22 +1,35 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { MapPin, Layers, Trash2, Pencil } from "lucide-react";
+import {
+  MapPin,
+  Layers,
+  Trash2,
+  Pencil,
+} from "lucide-react";
 import { useFarm } from "../../hooks/useFarm";
 
 const FarmCard = ({ farm, onEdit }) => {
   const { t } = useTranslation();
   const { deleteFarm } = useFarm();
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (window.confirm(t("farm.deleteConfirm"))) {
-      deleteFarm(farm.id);
+      try {
+        // MongoDB identifies the farm using _id
+        await deleteFarm(farm._id);
+      } catch (error) {
+        console.error("Error deleting farm:", error);
+      }
     }
   };
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
-        <h3 className="font-semibold text-gray-800">{farm.name}</h3>
+        <h3 className="font-semibold text-gray-800">
+          {farm.name}
+        </h3>
+
         <div className="flex items-center gap-2">
           <button
             onClick={() => onEdit(farm)}
@@ -24,6 +37,7 @@ const FarmCard = ({ farm, onEdit }) => {
           >
             <Pencil size={16} />
           </button>
+
           <button
             onClick={handleDelete}
             className="text-gray-300 hover:text-red-500 transition-colors"
@@ -38,9 +52,11 @@ const FarmCard = ({ farm, onEdit }) => {
           <MapPin size={14} />
           {farm.location}
         </div>
+
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <Layers size={14} />
-          {farm.areaInAcres} {t("farm.acres")} · {farm.soilType} {t("farm.soil")}
+          {farm.areaInAcres} {t("farm.acres")} ·{" "}
+          {farm.soilType} {t("farm.soil")}
         </div>
       </div>
     </div>

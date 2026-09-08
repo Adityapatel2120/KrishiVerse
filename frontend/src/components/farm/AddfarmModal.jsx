@@ -5,56 +5,109 @@ import { useFarm } from "../../hooks/useFarm";
 
 const soilTypes = ["Loamy", "Clay", "Sandy", "Silty", "Black Cotton"];
 
-const emptyForm = { name: "", location: "", areaInAcres: "", soilType: soilTypes[0] };
+const emptyForm = {
+  name: "",
+  location: "",
+  areaInAcres: "",
+  soilType: soilTypes[0],
+};
 
-const AddFarmModal = ({ isOpen, onClose, farmToEdit = null }) => {
+const AddFarmModal = ({
+  isOpen,
+  onClose,
+  farmToEdit = null,
+}) => {
   const { t } = useTranslation();
   const { addFarm, updateFarm } = useFarm();
+
   const [form, setForm] = useState(emptyForm);
   const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const isEditMode = Boolean(farmToEdit);
 
   useEffect(() => {
+    if (!isOpen) return;
+
     if (farmToEdit) {
       setForm({
-        name: farmToEdit.name,
-        location: farmToEdit.location,
-        areaInAcres: farmToEdit.areaInAcres,
-        soilType: farmToEdit.soilType,
+        name: farmToEdit.name || "",
+        location: farmToEdit.location || "",
+        areaInAcres: farmToEdit.areaInAcres ?? "",
+        soilType: farmToEdit.soilType || soilTypes[0],
       });
     } else {
       setForm(emptyForm);
     }
+
+    setError("");
+    setSaving(false);
   }, [farmToEdit, isOpen]);
 
   if (!isOpen) return null;
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.name.trim() || !form.location.trim() || !form.areaInAcres) {
+    setError("");
+
+    if (
+      !form.name.trim() ||
+      !form.location.trim() ||
+      !form.areaInAcres
+    ) {
       setError(t("farm.fillAllFields"));
       return;
     }
+
     if (Number(form.areaInAcres) <= 0) {
       setError(t("farm.areaInvalid"));
       return;
     }
 
-    if (isEditMode) {
-      updateFarm(farmToEdit.id, form);
-    } else {
-      addFarm(form);
-    }
+    try {
+      setSaving(true);
 
-    setForm(emptyForm);
-    onClose();
+      if (isEditMode) {
+        // MongoDB identifies the farm using _id
+        await updateFarm(farmToEdit._id, {
+          name: form.name.trim(),
+          location: form.location.trim(),
+          areaInAcres: Number(form.areaInAcres),
+          soilType: form.soilType,
+        });
+      } else {
+        await addFarm({
+          name: form.name.trim(),
+          location: form.location.trim(),
+          areaInAcres: Number(form.areaInAcres),
+          soilType: form.soilType,
+        });
+      }
+
+      setForm(emptyForm);
+      setError("");
+      onClose();
+    } catch (err) {
+      console.error("Error saving farm:", err);
+
+      setError(
+        err.message || "Failed to save farm. Please try again."
+      );
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -62,9 +115,17 @@ const AddFarmModal = ({ isOpen, onClose, farmToEdit = null }) => {
       <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6">
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-lg font-bold text-gray-800">
-            {isEditMode ? t("farm.editFarm") : t("farm.addFarm")}
+            {isEditMode
+              ? t("farm.editFarm")
+              : t("farm.addFarm")}
           </h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={saving}
+            className="text-gray-400 hover:text-gray-600 disabled:opacity-50"
+          >
             <X size={20} />
           </button>
         </div>
@@ -77,31 +138,42 @@ const AddFarmModal = ({ isOpen, onClose, farmToEdit = null }) => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-700">{t("farm.farmName")}</label>
+            <label className="text-sm font-medium text-gray-700">
+              {t("farm.farmName")}
+            </label>
+
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
               placeholder={t("farm.farmNamePlaceholder")}
-              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm"
+              disabled={saving}
+              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm disabled:bg-gray-100"
             />
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700">{t("farm.location")}</label>
+            <label className="text-sm font-medium text-gray-700">
+              {t("farm.location")}
+            </label>
+
             <input
               type="text"
               name="location"
               value={form.location}
               onChange={handleChange}
               placeholder={t("farm.locationPlaceholder")}
-              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm"
+              disabled={saving}
+              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm disabled:bg-gray-100"
             />
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700">{t("farm.area")}</label>
+            <label className="text-sm font-medium text-gray-700">
+              {t("farm.area")}
+            </label>
+
             <input
               type="number"
               name="areaInAcres"
@@ -110,20 +182,27 @@ const AddFarmModal = ({ isOpen, onClose, farmToEdit = null }) => {
               placeholder={t("farm.areaPlaceholder")}
               min="0"
               step="0.1"
-              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm"
+              disabled={saving}
+              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm disabled:bg-gray-100"
             />
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700">{t("farm.soilType")}</label>
+            <label className="text-sm font-medium text-gray-700">
+              {t("farm.soilType")}
+            </label>
+
             <select
               name="soilType"
               value={form.soilType}
               onChange={handleChange}
-              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm bg-white"
+              disabled={saving}
+              className="w-full mt-1 px-3 py-2.5 rounded-xl border border-gray-200 outline-none focus:border-green-500 text-sm bg-white disabled:bg-gray-100"
             >
               {soilTypes.map((soil) => (
-                <option key={soil} value={soil}>{t(`soilTypes.${soil}`)}</option>
+                <option key={soil} value={soil}>
+                  {t(`soilTypes.${soil}`)}
+                </option>
               ))}
             </select>
           </div>
@@ -132,15 +211,18 @@ const AddFarmModal = ({ isOpen, onClose, farmToEdit = null }) => {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 border border-gray-200 text-gray-600 font-medium py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+              disabled={saving}
+              className="flex-1 border border-gray-200 text-gray-600 font-medium py-2.5 rounded-xl hover:bg-gray-50 transition-colors disabled:opacity-50"
             >
               {t("common.cancel")}
             </button>
+
             <button
               type="submit"
-              className="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 rounded-xl transition-colors"
+              disabled={saving}
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {t("common.save")}
+              {saving ? "Saving..." : t("common.save")}
             </button>
           </div>
         </form>
