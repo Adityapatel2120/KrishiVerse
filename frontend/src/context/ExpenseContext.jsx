@@ -1,60 +1,113 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+} from "react";
 import { useAuth } from "../hooks/useAuth";
+import {
+  getExpenses,
+  createExpense,
+  updateExpense as updateExpenseApi,
+  deleteExpense as deleteExpenseApi,
+} from "../api/expenseApi";
 
 export const ExpenseContext = createContext(null);
 
 export const ExpenseProvider = ({ children }) => {
   const { currentUser } = useAuth();
+
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const storageKey = currentUser ? `krishiverse_expenses_${currentUser.uid}` : null;
-
   useEffect(() => {
-    if (!storageKey) {
-      setExpenses([]);
-      setLoading(false);
-      return;
+    const loadExpenses = async () => {
+      if (!currentUser) {
+        setExpenses([]);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+
+        // Load expenses belonging to the logged-in user
+        const data = await getExpenses(currentUser.uid);
+
+        setExpenses(data);
+      } catch (error) {
+        console.error("Error loading expenses:", error);
+        setExpenses([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadExpenses();
+  }, [currentUser]);
+
+  const addExpense = async (expense) => {
+    if (!currentUser) {
+      throw new Error("User is not logged in");
     }
-    const stored = localStorage.getItem(storageKey);
-    setExpenses(stored ? JSON.parse(stored) : []);
-    setLoading(false);
-  }, [storageKey]);
 
-  const persist = (updated) => {
-    setExpenses(updated);
-    if (storageKey) localStorage.setItem(storageKey, JSON.stringify(updated));
-  };
-
-  const addExpense = (expense) => {
-    const newExpense = {
-      id: `expense_${Date.now()}`,
+    // Save farm and crop along with the expense
+    const newExpense = await createExpense({
+      userId: currentUser.uid,
+      farmId: expense.farmId,
+      cropId: expense.cropId,
       category: expense.category,
       amount: Number(expense.amount),
       date: expense.date,
       note: expense.note || "",
-      createdAt: new Date().toISOString(),
-    };
-    persist([...expenses, newExpense]);
+    });
+
+    setExpenses((prev) => [...prev, newExpense]);
+
     return newExpense;
   };
 
-  const updateExpense = (id, updates) => {
-    const updated = expenses.map((e) =>
-      e.id === id ? { ...e, ...updates, amount: Number(updates.amount) } : e
+  const updateExpense = async (id, updates) => {
+    const updatedExpense = await updateExpenseApi(id, {
+      farmId: updates.farmId,
+      cropId: updates.cropId,
+      category: updates.category,
+      amount: Number(updates.amount),
+      date: updates.date,
+      note: updates.note || "",
+    });
+
+    setExpenses((prev) =>
+      prev.map((expense) =>
+        expense._id === id ? updatedExpense : expense
+      )
     );
-    persist(updated);
+
+    return updatedExpense;
   };
 
-  const deleteExpense = (id) => {
-    persist(expenses.filter((e) => e.id !== id));
+  const deleteExpense = async (id) => {
+    await deleteExpenseApi(id);
+
+    setExpenses((prev) =>
+      prev.filter((expense) => expense._id !== id)
+    );
   };
 
-  const totalExpense = expenses.reduce((sum, e) => sum + e.amount, 0);
+  const totalExpense = expenses.reduce(
+    (sum, expense) => sum + Number(expense.amount || 0),
+    0
+  );
 
   return (
     <ExpenseContext.Provider
-      value={{ expenses, loading, addExpense, updateExpense, deleteExpense, totalExpense }}
+      value={{
+        expenses,
+        loading,
+        addExpense,
+        updateExpense,
+        deleteExpense,
+        totalExpense,
+      }}
     >
       {children}
     </ExpenseContext.Provider>
