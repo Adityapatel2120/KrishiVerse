@@ -148,7 +148,7 @@ const Prediction = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/predict",
+        "https://krishiverse-ai-service.onrender.com/predict",
         {
           method: "POST",
           body: formData,
