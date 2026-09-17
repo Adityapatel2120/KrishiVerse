@@ -16,7 +16,7 @@ import CropList from "./pages/crop/CropList";
 import ExpenseList from "./pages/expense/ExpenseList";
 import Profile from "./pages/profile/Profile";
 import Prediction from "./pages/prediction/Prediction";
-import Analytics from "./pages/analytics/Analytics";
+import Analytics from "./pages/analytics/analytics";
 import NotFound from "./pages/common/NotFound";
 
 function App() {
