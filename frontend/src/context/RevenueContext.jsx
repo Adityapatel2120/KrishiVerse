@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAuth } from "../hooks/useAuth";
 
 export const RevenueContext = createContext(null);
-const API_URL = "http://localhost:5000/api/revenues";
+const API_URL = "https:///krishiverse-backend.onrender.com/api/revenues";
 
 export const RevenueProvider = ({ children }) => {
   const { currentUser } = useAuth();
