@@ -49,17 +49,6 @@ const WeatherWidget = () => {
           if (!weatherData.current) throw new Error("No current weather data returned");
           setWeather(weatherData.current);
 
-          try {
-            const geoRes = await fetch(
-              `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${latitude}&longitude=${longitude}`
-            );
-            const geoData = await geoRes.json();
-            const place = geoData.results?.[0];
-            setLocationName(place ? `${place.name}${place.admin1 ? ", " + place.admin1 : ""}` : "");
-          } catch {
-            setLocationName("");
-          }
-
           setStatus("success");
         } catch (err) {
           setStatus("error");

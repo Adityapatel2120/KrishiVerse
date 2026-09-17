@@ -1,4 +1,4 @@
-const API_BASE_URL = "https:///krishiverse-backend.onrender.com/api";
+const API_BASE_URL = "https://krishiverse-backend.onrender.com/api";
 
 export const apiRequest = async (endpoint, options = {}) => {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {

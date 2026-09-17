@@ -10,7 +10,7 @@ export const PredictionContext =
   createContext(null);
 
 const API_URL =
-  "https:///krishiverse-backend.onrender.com/api/predictions";
+  "https://krishiverse-backend.onrender.com/api/predictions";
 
 export const PredictionProvider = ({
   children,
