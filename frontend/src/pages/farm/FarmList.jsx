@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Plus, Tractor } from "lucide-react";
 import { useFarm } from "../../hooks/useFarm";
 import FarmCard from "../../components/farm/FarmCard";
-import AddFarmModal from "../../components/farm/AddFarmModal";
+import AddFarmModal from "../../components/farm/AddfarmModal";
 
 const FarmList = () => {
   const { t } = useTranslation();
